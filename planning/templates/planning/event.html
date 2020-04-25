@@ -1,0 +1,17 @@
+
+{% extends 'layouts/base.html' %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{% block content %}
+
+
+
+        {% crispy form %}
+
+
+{% endblock content %}

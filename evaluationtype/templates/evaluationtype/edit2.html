@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{% block content %}
+       <form method="POST" class="post-form">{% csrf_token %}
+
+           {{ form.as_p }}
+           <button type="submit" class="btn btn-primary btn-lg">Enregistrer</button>
+       </form>
+{% endblock content %}

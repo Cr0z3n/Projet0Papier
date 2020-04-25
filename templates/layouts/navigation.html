@@ -1,0 +1,58 @@
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+
+
+<nav class="navbar navbar-expand-lg">
+<div class="wrapper">
+
+<a class="navbar-brand" href="#">Projet 0 Papier</a>
+
+
+<ul class="navbar-right">
+
+  <div class="btn-group dropleft">
+    <button class="btn btn-default btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      {% if user.groups.all.0.name == 'Responsables de parcours' %}
+      <li><a class="dropdown-item" href="{% url 'evaluationtype:index' %}">Type d'évaluation</a></li>
+      {% endif %}
+      {% if user.groups.all.0.name == 'Responsables de parcours' %}
+      <li><a class="dropdown-item" href="{% url 'critere:index' %}">Criteres</a></li>
+      {% endif %}
+      {% if user.groups.all.0.name == 'Responsables de parcours' %}
+      <li><a class="dropdown-item" href="{% url 'planning:event_new' %}">Nouvelle évaluation</a></li>
+      {% endif %}
+      {% if user.groups.all.0.name == 'Responsables de parcours' or user.groups.all.0.name == 'Evaluateurs' %}
+      <li><a class="dropdown-item" href="{% url 'planning:calendar' %}">Planning</a></li>
+      {% endif %}
+      {% if user.groups.all.0.name == 'Eleves' %}
+      <li><a class="dropdown-item" href="{% url 'evaluation:index' %}">Resultats</a></li>
+      {% endif %}
+    </div>
+  </div>
+
+
+  <div class="btn-group dropleft">
+    <button class="btn btn-default btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     <span class="fa fa-user" aria-hidden="true"> </span>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <li><a class="dropdown-item" href="#">Profil</a></li>
+      <li role="separator" class="divider"< </li>
+      <li><a class="dropdown-item" href="{% url 'login' %}">Connexion</a></li>
+      <li><a class="dropdown-item" href="{% url 'logout' %}">Deconnexion</a></li>
+    </div>
+  </div>
+
+
+
+
+</ul>
+
+</div>
+</nav>

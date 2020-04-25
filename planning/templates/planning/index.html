@@ -1,0 +1,35 @@
+
+
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+
+
+
+
+{% block content %}
+
+
+    {% for evaluation in evaluations %}
+    <a>
+    {{evaluation.libelle_evaluation}}
+
+    /
+
+    {% for eleve in evaluation.eleves.all %}{{ eleve.username }}  {% endfor %}
+
+    /
+    {% for evaluateur in evaluation.evaluateurs.all %}{{ evaluateur.username }}  {% endfor %}
+
+
+    </a>
+<br>
+
+      {% endfor %}
+
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,57 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+
+
+
+{% block content %}
+
+
+
+  <table class="table table-bordered table-dark">
+    <thead class="thead-dark">
+   <tr>    <th rowspan="2">Type d'évaluation</th>      <th colspan="3">Critere</th>          </tr>
+   <tr>   <td width = 25%>Nom du critere</td>      <td width = 25%>Type</td>      <td width = 25%>Poids</td> </tr>
+
+
+    </thead>
+
+
+    <tbody>
+      {% for evaluationtype in evaluationtypes %}
+      <th rowspan= {{evaluationtype.criteres.all|length|add:1}} > {{evaluationtype.libelle_evaluationtype}} </th>
+
+
+
+      {% for critere in evaluationtype.criteres.all %}
+        <tr>
+            <td> {{ critere }} <br>  </td>
+            <td> {{ critere.type }} </td>
+            <td> {%for poid in poids %}
+            {% if poid.critere == critere and poid.type_evaluation == evaluationtype %}
+            Poids : {{poid.poids}}
+            {% endif %}
+            {% endfor %} </td>
+
+        </tr>
+
+{% endfor %}
+        {% endfor %}
+
+    </tbody>
+  </table>
+
+
+  <center>
+    {% if user.groups.all.0.name == 'Responsables de parcours' %}
+    <a class="btn btn-primary btn-lg" href="{% url 'evaluationtype:new' %}">Nouveau</a>
+    {% endif %}
+  </center>
+
+
+
+{% endblock content %}

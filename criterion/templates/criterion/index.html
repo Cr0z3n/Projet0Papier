@@ -1,0 +1,63 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+
+
+{% block content %}
+
+  <table class="table table-bordered table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Champs</th>
+      </tr>
+    </thead>
+
+    {% for critere in criteres %}
+    <tbody>
+      <tr>
+        <th scope="row">{{critere.libelle_critere}}</th>
+          <td>
+              {% for champ in critere.champs.all %}
+              {{champ.nom}},
+
+              {%for poid in poids_champs %}
+              {% if poid.critere == critere and poid.champ == champ %}
+              Valeur : {{poid.poids_champ }} 
+              {% endif %}
+              {% endfor %}
+              <br>
+
+              {% endfor %}
+
+          </td>
+      </tr>
+    </tbody>
+
+      {% endfor %}
+
+  </table>
+
+<br><br>
+
+
+
+  <center>
+    {% if user.groups.all.0.name == 'Responsables de parcours' %}
+    <a class="btn btn-primary btn-lg" href="{% url 'critere:new' %}">Nouveau critere</a>
+    {% endif %}
+
+
+
+    {% if user.groups.all.0.name == 'Responsables de parcours' %}
+    <a class="btn btn-primary btn-lg" href="{% url 'critere:champ_new' %}">Nouveau champ</a>
+    {% endif %}
+  </center>
+
+
+
+{% endblock content %}

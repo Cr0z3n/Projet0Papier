@@ -1,0 +1,44 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+
+
+{% block content %}
+
+
+
+    <table class="table table-bordered table-dark">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Evaluation</th>
+          <th scope="col">Note</th>
+
+
+        </tr>
+      </thead>
+
+      <tbody>
+    {% for event in events%}
+
+    {% for evaluateur in event.evaluateurs.all %}
+    {% empty %}
+
+        <tr>
+          <th scope="row">{{ event }}</th>
+          <td>
+            {{event.note_critere.3}}
+          </td>
+        </tr>
+
+    {% endfor %}
+    {% endfor %}
+      </tbody>
+
+  </table>
+
+
+{% endblock content %}

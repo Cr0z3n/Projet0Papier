@@ -1,0 +1,24 @@
+
+
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+
+{% block content %}
+
+
+<div class="clearfix">
+	<a class="btn btn-info left" href="{% url 'planning:calendar' %}?{{ prev_month }}"> Mois précédent </a>
+	<a class="btn btn-info right" href="{% url 'planning:calendar' %}?{{ next_month }}"> Mois suivant </a>
+</div>
+
+
+{{ calendar }}
+
+
+
+{% endblock content %}

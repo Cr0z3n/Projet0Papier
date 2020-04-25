@@ -1,0 +1,16 @@
+
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<center>
+<form method="post"  role="form">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Utilisateur"> <br>
+    <input type="password" name="password" placeholder="Mot de passe>"> <br>
+    <input type="submit" value="login" />
+</form>
+</center>
+
+{% endblock content %}
